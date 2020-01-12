@@ -1,5 +1,9 @@
 version: '3.4'
 
+networks:
+  zip-dev:
+    driver: bridge
+
 services:
   zippayuserservice:
     image: zippayuserservice
@@ -7,4 +11,6 @@ services:
       context: .
       dockerfile: ZipPayUserService/Dockerfile
     ports:
-    - "32785"
+    - "8000:80"
+    networks:
+    - zip-dev
