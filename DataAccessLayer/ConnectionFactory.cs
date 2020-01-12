@@ -1,5 +1,5 @@
-﻿using System.Data;
-using System.Data.SqlClient;
+﻿using Npgsql;
+using System.Data;
 
 namespace Dal
 {
@@ -19,7 +19,7 @@ namespace Dal
 
         public IDbConnection Create()
         {
-            return new SqlConnection(ConnectionString);
+            return new NpgsqlConnection(ConnectionString);
         }
     }
 }

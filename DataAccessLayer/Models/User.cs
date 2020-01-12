@@ -11,7 +11,5 @@ namespace Dal.Models
         public decimal MonthlySalary { get; set; }
 
         public decimal MonthlyExpenses { get; set; }
-
-        public virtual List<Account> Accounts { get; set; }
     }
 }

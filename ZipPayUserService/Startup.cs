@@ -1,4 +1,5 @@
 using Dal;
+using Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,9 @@ namespace ZipPayUserService
 
             var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
             services.AddTransient<IConnectionFactory>(s => new ConnectionFactory(connectionString));
+
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

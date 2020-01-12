@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using Domain;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace ZipPayUserService.ApiControllers
 {
@@ -7,12 +8,19 @@ namespace ZipPayUserService.ApiControllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [Route("")]
         [Route("list")]
         [HttpGet]
-        public List<string> List()
+        public async Task<ActionResult> List()
         {
-            return new List<string> { "list" };
+            return Ok(await _userService.GetAllUsersAsync());
         }
 
         [Route("get")]
