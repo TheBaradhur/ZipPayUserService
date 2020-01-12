@@ -1,5 +1,6 @@
 ﻿using Dal;
 using Dal.Models;
+using Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace Domain
         Task<UserEntity> GetUserByIdAsync(int userId);
 
         Task<UserEntity> CreateNewUserAsync(string emailAddress, decimal monthlySalary, decimal monthlyExpenses);
+
+        Task<BusinessRulesValidation> ValidateCreationInputsAsync(string emailAddress);
     }
 
     public class UserService : IUserService
@@ -36,6 +39,22 @@ namespace Domain
         public async Task<UserEntity> CreateNewUserAsync(string emailAddress, decimal monthlySalary, decimal monthlyExpenses)
         {
             return await _userRepo.InsertAsync(emailAddress, monthlySalary, monthlyExpenses);
+        }
+
+        public async Task<BusinessRulesValidation> ValidateCreationInputsAsync(string emailAddress)
+        {
+            var validation = new BusinessRulesValidation(true);
+
+            var emailAlreadyExist = await _userRepo.DoesEmailAlreadyExistsAsync(emailAddress);
+
+            if (emailAlreadyExist)
+            {
+                validation.IsValid = false;
+                validation.ErrorCode = "EmailExists";
+                validation.Error = "This email is already used.";
+            }
+
+            return validation;
         }
     }
 }

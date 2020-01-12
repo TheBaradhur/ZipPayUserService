@@ -45,7 +45,7 @@ namespace ZipPayUserService.ApiControllers
                 return NotFound($"User with id {id} not found");
             }
 
-            return Ok(user);
+            return Ok(user.ToApiModel());
         }
 
         [HttpPost("create")]
@@ -56,9 +56,20 @@ namespace ZipPayUserService.ApiControllers
                 return BadRequest();
             }
 
+            var validation = await _userService.ValidateCreationInputsAsync(createUserRequest.EmailAddress);
+
+            if (!validation.IsValid)
+            {
+                return BadRequest(
+                    ApiErrorResponse.GetCustomBadRequest(
+                        "One ore more business rules were not respected",
+                        HttpContext.TraceIdentifier, 
+                        new List<string> { validation.Error }));
+            }
+
             var createdUser = await _userService.CreateNewUserAsync(createUserRequest.EmailAddress, createUserRequest.MonthlySalary, createUserRequest.MonthlyExpenses);
 
-            return StatusCode(201, createdUser);
+            return StatusCode(201, createdUser.ToApiModel());
         }
     }
 }

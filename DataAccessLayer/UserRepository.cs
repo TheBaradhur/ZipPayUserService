@@ -12,6 +12,8 @@ namespace Dal
         Task<UserEntity> GetByIdAsync(int userId);
 
         Task<UserEntity> InsertAsync(string emailAddress, decimal monthlySalary, decimal monthlyExpenses);
+
+        Task<bool> DoesEmailAlreadyExistsAsync(string emailToCheck);
     }
 
     public class UserRepository : IUserRepository
@@ -47,6 +49,14 @@ namespace Dal
             }
         }
 
+        public async Task<bool> DoesEmailAlreadyExistsAsync(string emailToCheck)
+        {
+            using (var db = _connectionFactory.Create())
+            {
+                return await db.ExecuteScalarAsync<bool>(Sql.CheckEmailAlreadyExist, new { emailaddress = emailToCheck });
+            }
+        }
+
         private static class Sql
         {
             public static readonly string GetAll = $@"
@@ -70,6 +80,15 @@ namespace Dal
                 VALUES (@emailaddress, @monthlysalary, @monthlyexpenses)
 
                 RETURNING *;
+
+            ";
+
+            public static readonly string CheckEmailAlreadyExist = $@"
+
+                SELECT EXISTS(
+                    SELECT 1 
+                    FROM public.user 
+                    WHERE emailaddress = @emailaddress);
 
             ";
         }
