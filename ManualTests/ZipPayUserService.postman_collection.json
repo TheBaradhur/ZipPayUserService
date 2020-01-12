@@ -1,0 +1,10 @@
+{
+	"info": {
+		"_postman_id": "a34bd53d-c263-4980-99f9-290c844f2f11",
+		"name": "ZipPayUserService",
+		"description": "Allows to interact manually with every ZipPayUserService api endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [],
+	"protocolProfileBehavior": {}
+}

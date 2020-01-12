@@ -7,19 +7,23 @@ namespace ZipPayUserService.ApiControllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        [HttpGet(Name = "List")]
+        [Route("")]
+        [Route("list")]
+        [HttpGet]
         public List<string> List()
         {
             return new List<string> { "list" };
         }
 
-        [HttpPost(Name = "Create")]
+        [Route("get")]
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        [Route("create")]
+        [HttpPost]
         public int Create([FromBody] string value)
         {
             return 1;

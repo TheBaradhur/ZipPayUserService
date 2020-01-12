@@ -7,13 +7,15 @@ namespace ZipPayUserService.ApiControllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        [HttpGet(Name = "List")]
+        [Route("list")]
+        [HttpGet]
         public List<string> List()
         {
             return new List<string> { "list" };
         }
 
-        [HttpPost(Name = "Create")]
+        [Route("create")]
+        [HttpPost]
         public int Create([FromBody] string value)
         {
             return 1;

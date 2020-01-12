@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  zippayuserservice:
+    image: zippayuserservice
+    build:
+      context: .
+      dockerfile: ZipPayUserService/Dockerfile
+    ports:
+    - "32785"
