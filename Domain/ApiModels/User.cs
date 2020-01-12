@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Dal.Models
+﻿namespace Dal.Models
 {
     public class User
     {

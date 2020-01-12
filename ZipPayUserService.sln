@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal", "DataAccessLayer\Dal.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{C1EAB865-73DA-4B7E-B68A-54ACD5A3722E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZipPayUserService.IntegrationTests", "Web.IntegrationTests\ZipPayUserService.IntegrationTests.csproj", "{FD96C17E-7A95-4200-9A15-9F8DCB950BE2}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0A6B4208-37D6-42EA-BC09-BE49E296258C}"
 EndProject
 Global
@@ -37,10 +35,6 @@ Global
 		{C1EAB865-73DA-4B7E-B68A-54ACD5A3722E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1EAB865-73DA-4B7E-B68A-54ACD5A3722E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1EAB865-73DA-4B7E-B68A-54ACD5A3722E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD96C17E-7A95-4200-9A15-9F8DCB950BE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD96C17E-7A95-4200-9A15-9F8DCB950BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD96C17E-7A95-4200-9A15-9F8DCB950BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD96C17E-7A95-4200-9A15-9F8DCB950BE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A6B4208-37D6-42EA-BC09-BE49E296258C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A6B4208-37D6-42EA-BC09-BE49E296258C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A6B4208-37D6-42EA-BC09-BE49E296258C}.Release|Any CPU.ActiveCfg = Release|Any CPU

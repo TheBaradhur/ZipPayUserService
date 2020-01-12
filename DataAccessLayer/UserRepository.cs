@@ -7,7 +7,11 @@ namespace Dal
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllAsync();
+        Task<IEnumerable<UserEntity>> GetAllAsync();
+
+        Task<UserEntity> GetByIdAsync(int userId);
+
+        Task<UserEntity> InsertAsync(string emailAddress, decimal monthlySalary, decimal monthlyExpenses);
     }
 
     public class UserRepository : IUserRepository
@@ -19,11 +23,27 @@ namespace Dal
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IEnumerable<UserEntity>> GetAllAsync()
         {
             using (var db = _connectionFactory.Create())
             {
-                return await db.QueryAsync<User>(Sql.GetAll);
+                return await db.QueryAsync<UserEntity>(Sql.GetAll);
+            }
+        }
+
+        public async Task<UserEntity> GetByIdAsync(int userId)
+        {
+            using (var db = _connectionFactory.Create())
+            {
+                return await db.QuerySingleOrDefaultAsync<UserEntity>(Sql.GetById, new { id = userId });
+            }
+        }
+
+        public async Task<UserEntity> InsertAsync(string emailAddress, decimal monthlySalary, decimal monthlyExpenses)
+        {
+            using (var db = _connectionFactory.Create())
+            {
+                return await db.QuerySingleOrDefaultAsync<UserEntity>(Sql.Insert, new { emailaddress = emailAddress, monthlysalary = monthlySalary, monthlyexpenses = monthlyExpenses} );
             }
         }
 
@@ -33,6 +53,23 @@ namespace Dal
 
                 SELECT id, emailaddress, monthlysalary, Monthlyexpenses
                 FROM public.user;
+
+            ";
+
+            public static readonly string GetById = $@"
+
+                SELECT id, emailaddress, monthlysalary, Monthlyexpenses
+                FROM public.user
+                WHERE id = @id;
+
+            ";
+
+            public static readonly string Insert = $@"
+
+                INSERT INTO public.user (emailaddress, monthlysalary, Monthlyexpenses)
+                VALUES (@emailaddress, @monthlysalary, @monthlyexpenses)
+
+                RETURNING *;
 
             ";
         }

@@ -5,7 +5,7 @@ namespace ZipPayUserService.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountsController : ControllerBase
     {
         [Route("list")]
         [HttpGet]
