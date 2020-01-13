@@ -1,13 +1,13 @@
-﻿using Domain;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ZipPayUserService.ApiModels;
-using ZipPayUserService.Mappers;
+using Microsoft.AspNetCore.Mvc;
+using ZipPay.User.Domain;
+using ZipPay.User.Web.ApiModels;
+using ZipPay.User.Web.Mappers;
 
-namespace ZipPayUserService.ApiControllers
+namespace ZipPay.User.Web.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -23,7 +23,7 @@ namespace ZipPayUserService.ApiControllers
         [HttpGet("")]
         [HttpGet("/")]
         [HttpGet("list")]
-        public async Task<ActionResult<IEnumerable<User>>> ListUsers()
+        public async Task<ActionResult<IEnumerable<ApiModels.User>>> ListUsers()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace ZipPayUserService.ApiControllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<ApiModels.User>> GetUser(int id)
         {
             if (id < 1)
             {
@@ -80,7 +80,7 @@ namespace ZipPayUserService.ApiControllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<User>> CreateUser([FromBody] CreateUserRequest createUserRequest)
+        public async Task<ActionResult<ApiModels.User>> CreateUser([FromBody] CreateUserRequest createUserRequest)
         {
             if (!ModelState.IsValid)
             {

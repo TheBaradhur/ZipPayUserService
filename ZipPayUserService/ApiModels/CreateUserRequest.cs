@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ZipPayUserService.ApiModels
+namespace ZipPay.User.Web.ApiModels
 {
     public class CreateUserRequest
     {

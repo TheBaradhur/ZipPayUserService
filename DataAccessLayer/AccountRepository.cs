@@ -1,9 +1,9 @@
-﻿using Dal.Models;
-using Dapper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Dapper;
+using ZipPay.User.Infrastructure.Models;
 
-namespace Dal
+namespace ZipPay.User.Infrastructure
 {
     public interface IAccountRepository
     {

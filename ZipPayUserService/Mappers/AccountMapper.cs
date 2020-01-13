@@ -1,7 +1,7 @@
-﻿using Dal.Models;
-using ZipPayUserService.ApiModels;
+﻿using ZipPay.User.Infrastructure.Models;
+using ZipPay.User.Web.ApiModels;
 
-namespace ZipPayUserService.Mappers
+namespace ZipPay.User.Web.Mappers
 {
     public static class AccountMapper
     {

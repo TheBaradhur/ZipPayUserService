@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Domain.Models
+﻿namespace ZipPay.User.Domain.Models
 {
     public class BusinessRulesValidation
     {

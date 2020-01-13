@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ZipPayUserService.ApiModels
+namespace ZipPay.User.Web.ApiModels
 {
     public class ApiErrorResponse
     {

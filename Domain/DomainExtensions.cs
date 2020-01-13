@@ -1,7 +1,6 @@
-﻿using Domain;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Domain
+namespace ZipPay.User.Domain
 {
     public static class DomainExtensions
     {

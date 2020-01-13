@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dal.Models
+namespace ZipPay.User.Infrastructure.Models
 {
     public class AccountEntity
     {

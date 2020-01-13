@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Dal
+namespace ZipPay.User.Infrastructure
 {
     public static class DalExtensions
     {

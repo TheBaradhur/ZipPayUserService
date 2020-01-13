@@ -1,12 +1,12 @@
-using Dal;
-using Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ZipPay.User.Domain;
+using ZipPay.User.Infrastructure;
 
-namespace ZipPayUserService
+namespace ZipPay.User.Web
 {
     public class Startup
     {

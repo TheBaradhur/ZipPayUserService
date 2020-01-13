@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZipPayUserService", "ZipPayUserService\ZipPayUserService.csproj", "{9E210A06-36A8-4FD0-B1BF-2EC708E266CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZipPay.User.Web", "ZipPayUserService\ZipPay.User.Web.csproj", "{9E210A06-36A8-4FD0-B1BF-2EC708E266CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{656B9079-9BF5-4FAE-891D-D883E0B6586E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZipPay.User.Domain", "Domain\ZipPay.User.Domain.csproj", "{656B9079-9BF5-4FAE-891D-D883E0B6586E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal", "DataAccessLayer\Dal.csproj", "{CE52CAD1-7117-430B-9767-C436EB6FD070}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZipPay.User.Infrastructure", "DataAccessLayer\ZipPay.User.Infrastructure.csproj", "{CE52CAD1-7117-430B-9767-C436EB6FD070}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{C1EAB865-73DA-4B7E-B68A-54ACD5A3722E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZipPay.User.Domain.UnitTests", "Domain.UnitTests\ZipPay.User.Domain.UnitTests.csproj", "{C1EAB865-73DA-4B7E-B68A-54ACD5A3722E}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0A6B4208-37D6-42EA-BC09-BE49E296258C}"
 EndProject

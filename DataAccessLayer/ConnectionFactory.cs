@@ -1,7 +1,7 @@
-﻿using Npgsql;
-using System.Data;
+﻿using System.Data;
+using Npgsql;
 
-namespace Dal
+namespace ZipPay.User.Infrastructure
 {
     public interface IConnectionFactory
     {

@@ -1,10 +1,10 @@
 using AutoFixture;
-using Dal;
 using FluentAssertions;
 using NSubstitute;
 using Xunit;
+using ZipPay.User.Infrastructure;
 
-namespace Domain.UnitTests
+namespace ZipPay.User.Domain.UnitTests
 {
     public class UserServiceTests
     {

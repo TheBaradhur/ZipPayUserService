@@ -1,13 +1,13 @@
-﻿using Domain;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ZipPayUserService.ApiModels;
-using ZipPayUserService.Mappers;
+using Microsoft.AspNetCore.Mvc;
+using ZipPay.User.Domain;
+using ZipPay.User.Web.ApiModels;
+using ZipPay.User.Web.Mappers;
 
-namespace ZipPayUserService.ApiControllers
+namespace ZipPay.User.Web.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -42,7 +42,7 @@ namespace ZipPayUserService.ApiControllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetAccount(int id)
+        public async Task<ActionResult<ApiModels.User>> GetAccount(int id)
         {
             if (id < 1)
             {

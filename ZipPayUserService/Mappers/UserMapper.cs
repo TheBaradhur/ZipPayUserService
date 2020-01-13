@@ -1,13 +1,12 @@
-﻿using Dal.Models;
-using ZipPayUserService.ApiModels;
+﻿using ZipPay.User.Infrastructure.Models;
 
-namespace ZipPayUserService.Mappers
+namespace ZipPay.User.Web.Mappers
 {
     public static class UserMapper
     {
-        public static User ToApiModel(this UserEntity userEntity)
+        public static ApiModels.User ToApiModel(this UserEntity userEntity)
         {
-            return new User
+            return new ApiModels.User
             {
                 Id = userEntity.Id,
                 EmailAddress = userEntity.EmailAddress,

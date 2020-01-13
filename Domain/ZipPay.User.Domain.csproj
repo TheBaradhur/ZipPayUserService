@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessLayer\Dal.csproj" />
+    <ProjectReference Include="..\DataAccessLayer\ZipPay.User.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

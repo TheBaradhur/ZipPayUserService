@@ -1,13 +1,13 @@
-﻿using AutoFixture;
-using Dal;
-using Dal.Models;
+﻿using System.Collections.Generic;
+using AutoFixture;
 using FluentAssertions;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using System.Collections.Generic;
 using Xunit;
+using ZipPay.User.Infrastructure;
+using ZipPay.User.Infrastructure.Models;
 
-namespace Domain.UnitTests
+namespace ZipPay.User.Domain.UnitTests
 {
     public class AccountServiceTests
     {

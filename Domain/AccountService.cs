@@ -1,11 +1,11 @@
-﻿using Dal;
-using Dal.Models;
-using Domain.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZipPay.User.Domain.Models;
+using ZipPay.User.Infrastructure;
+using ZipPay.User.Infrastructure.Models;
 
-namespace Domain
+namespace ZipPay.User.Domain
 {
     public interface IAccountService
     {
