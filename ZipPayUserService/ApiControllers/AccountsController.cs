@@ -1,5 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dal.Models;
+using Domain;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ZipPayAccountService.Mappers;
+using ZipPayUserService.ApiModels;
 
 namespace ZipPayUserService.ApiControllers
 {
@@ -7,18 +13,72 @@ namespace ZipPayUserService.ApiControllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        [Route("list")]
-        [HttpGet]
-        public List<string> List()
+        private readonly IAccountService _accountService;
+
+        public AccountsController(IAccountService accountService)
         {
-            return new List<string> { "list" };
+            _accountService = accountService;
         }
 
-        [Route("create")]
-        [HttpPost]
-        public int Create([FromBody] string value)
+        [HttpGet("")]
+        [HttpGet("/")]
+        [HttpGet("list")]
+        public async Task<ActionResult<IEnumerable<Account>>> ListUsers()
         {
-            return 1;
+            var users = await _accountService.GetAllAccountsAsync();
+
+            return Ok(users.Select(x => x.ToApiModel()));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetAccount(int id)
+        {
+            if (id < 1)
+            {
+                return BadRequest(
+                    ApiErrorResponse.GetCustomBadRequest(
+                        "One or more validation errors occurred.",
+                        HttpContext.TraceIdentifier,
+                        new List<string> { "Account Id needs to be more than 0" }));
+            }
+
+            var account = await _accountService.GetAccountByIdAsync(id);
+
+            if (account == null)
+            {
+                return NotFound(
+                    ApiErrorResponse.GetCustomNotFound(
+                        "Requested resource not found.",
+                        HttpContext.TraceIdentifier,
+                        new List<string> { $"Account with id {id} not found" })
+                    );
+            }
+
+            return Ok(account.ToApiModel());
+        }
+
+        [HttpPost("create")]
+        public async Task<ActionResult<Account>> CreateAccount([FromBody] CreateAccountRequest createAccountRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var validation = await _accountService.ValidateCreationInputsAsync(createAccountRequest.UserId, createAccountRequest.RequestedCreditAmount);
+
+            if (!validation.IsValid)
+            {
+                return BadRequest(
+                    ApiErrorResponse.GetCustomBadRequest(
+                        "One or more business rules were not respected.",
+                        HttpContext.TraceIdentifier,
+                        new List<string> { validation.Error }));
+            }
+
+            var createdAccount = await _accountService.CreateNewAccountAsync(createAccountRequest.UserId, createAccountRequest.RequestedCreditAmount);
+
+            return StatusCode(201, createdAccount.ToApiModel());
         }
     }
 }

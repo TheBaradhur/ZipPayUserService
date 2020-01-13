@@ -13,5 +13,7 @@ namespace Dal.Models
         public decimal OriginalCreditAmount { get; set; }
 
         public decimal CurrentBalance { get; set; }
+
+        public bool IsCreditFullyRefunded => CurrentBalance == 0; 
     }
 }

@@ -79,7 +79,7 @@ namespace Dal
                 INSERT INTO public.user (emailaddress, monthlysalary, Monthlyexpenses)
                 VALUES (@emailaddress, @monthlysalary, @monthlyexpenses)
 
-                RETURNING id, emailaddress, monthlysalary, Monthlyexpenses;
+                RETURNING id, emailaddress, monthlysalary, monthlyexpenses;
 
             ";
 

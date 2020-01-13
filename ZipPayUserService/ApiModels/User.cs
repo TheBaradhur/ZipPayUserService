@@ -9,5 +9,7 @@
         public decimal MonthlySalary { get; set; }
 
         public decimal MonthlyExpenses { get; set; }
+
+        public decimal OverallCreditAllowance => MonthlySalary - MonthlyExpenses;
     }
 }

@@ -32,5 +32,21 @@ namespace Domain.UnitTests
             actual.ErrorCode.Should().Be("EmailExists");
             actual.Error.Should().Be("This email is already used.");
         }
+
+        [Fact]
+        public async void ValidateCreationInputsAsync_HappyPath()
+        {
+            // Arrange
+            var userRepo = Substitute.For<IUserRepository>();
+            var randomEmail = _fixture.Create<string>();
+            userRepo.DoesEmailAlreadyExistsAsync(randomEmail).Returns(false);
+            var target = new UserService(userRepo);
+
+            // Act
+            var actual = await target.ValidateCreationInputsAsync(randomEmail);
+
+            // Assert
+            actual.IsValid.Should().BeTrue();
+        }
     }
 }
