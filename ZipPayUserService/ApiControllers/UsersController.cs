@@ -35,14 +35,23 @@ namespace ZipPayUserService.ApiControllers
         {
             if (id < 1)
             {
-                return BadRequest("User Id needs to be more than 0");
+                return BadRequest(
+                    ApiErrorResponse.GetCustomBadRequest(
+                        "One or more validation errors occurred.",
+                        HttpContext.TraceIdentifier,
+                        new List<string> { "User Id needs to be more than 0" }));
             }
 
             var user = await _userService.GetUserByIdAsync(id);
 
             if (user == null)
             {
-                return NotFound($"User with id {id} not found");
+                return NotFound(
+                    ApiErrorResponse.GetCustomNotFound(
+                        "Requested resource not found.",
+                        HttpContext.TraceIdentifier,
+                        new List<string> { $"User with id {id} not found" })
+                    );
             }
 
             return Ok(user.ToApiModel());
@@ -62,7 +71,7 @@ namespace ZipPayUserService.ApiControllers
             {
                 return BadRequest(
                     ApiErrorResponse.GetCustomBadRequest(
-                        "One ore more business rules were not respected",
+                        "One or more business rules were not respected.",
                         HttpContext.TraceIdentifier, 
                         new List<string> { validation.Error }));
             }

@@ -10,11 +10,11 @@ namespace ZipPayUserService.ApiModels
         public string EmailAddress { get; set; }
 
         [Required]
-        [Range(0.1, Double.MaxValue, ErrorMessage = "Only positive number allowed")]
+        [Range(0.1, Double.MaxValue, ErrorMessage = "Only positive number allowed.")]
         public decimal MonthlySalary { get; set; }
 
         [Required]
-        [Range(0.1, Double.MaxValue, ErrorMessage = "Only positive number allowed")]
+        [Range(0.1, Double.MaxValue, ErrorMessage = "Only positive number allowed.")]
         public decimal MonthlyExpenses { get; set; }
     }
 }
