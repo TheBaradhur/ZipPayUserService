@@ -1,4 +1,5 @@
 ﻿using Dal.Models;
+using ZipPayUserService.ApiModels;
 
 namespace ZipPayUserService.Mappers
 {

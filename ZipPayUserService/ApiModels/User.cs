@@ -1,4 +1,4 @@
-﻿namespace Dal.Models
+﻿namespace ZipPayUserService.ApiModels
 {
     public class User
     {

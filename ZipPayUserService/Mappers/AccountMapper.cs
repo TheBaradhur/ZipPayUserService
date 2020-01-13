@@ -1,8 +1,9 @@
 ﻿using Dal.Models;
+using ZipPayUserService.ApiModels;
 
-namespace ZipPayAccountService.Mappers
+namespace ZipPayUserService.Mappers
 {
-    public static class UserMapper
+    public static class AccountMapper
     {
         public static Account ToApiModel(this AccountEntity accountEntity)
         {

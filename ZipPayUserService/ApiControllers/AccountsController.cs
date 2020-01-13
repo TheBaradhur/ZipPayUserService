@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ZipPayAccountService.Mappers;
 using ZipPayUserService.ApiModels;
+using ZipPayUserService.Mappers;
 
 namespace ZipPayUserService.ApiControllers
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dal.Models
+namespace ZipPayUserService.ApiModels
 {
     public class Account
     {
