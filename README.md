@@ -1,8 +1,8 @@
-# ZipPayUserService# ZipPayUserService
+# ZipPayUserService
 ----
 ## Description
 
-This micro service is in charge OF the creation and management of ZipPay users and their credit accounts.
+This micro service is in charge of the creation and management of ZipPay users and their credit accounts.
 
 ----
 ## Getting Started
