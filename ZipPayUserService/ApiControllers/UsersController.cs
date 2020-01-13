@@ -1,6 +1,6 @@
-﻿using Dal.Models;
-using Domain;
+﻿using Domain;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,9 +25,20 @@ namespace ZipPayUserService.ApiControllers
         [HttpGet("list")]
         public async Task<ActionResult<IEnumerable<User>>> ListUsers()
         {
-            var users = await _userService.GetAllUsersAsync();
+            try
+            {
+                var users = await _userService.GetAllUsersAsync();
 
-            return Ok(users.Select(x => x.ToApiModel()));
+                return Ok(users.Select(x => x.ToApiModel()));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500,
+                    ApiErrorResponse.GetCustomInternalServerError(
+                        "An unexpected error occured. Please contact API team.",
+                        HttpContext.TraceIdentifier,
+                        new List<string> { e.Message }));
+            }
         }
 
         [HttpGet("{id}")]
@@ -42,19 +53,30 @@ namespace ZipPayUserService.ApiControllers
                         new List<string> { "User Id needs to be more than 0" }));
             }
 
-            var user = await _userService.GetUserByIdAsync(id);
-
-            if (user == null)
+            try
             {
-                return NotFound(
-                    ApiErrorResponse.GetCustomNotFound(
-                        "Requested resource not found.",
-                        HttpContext.TraceIdentifier,
-                        new List<string> { $"User with id {id} not found" })
-                    );
-            }
+                var user = await _userService.GetUserByIdAsync(id);
 
-            return Ok(user.ToApiModel());
+                if (user == null)
+                {
+                    return NotFound(
+                        ApiErrorResponse.GetCustomNotFound(
+                            "Requested resource not found.",
+                            HttpContext.TraceIdentifier,
+                            new List<string> { $"User with id {id} not found" })
+                    );
+                }
+
+                return Ok(user.ToApiModel());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500,
+                    ApiErrorResponse.GetCustomInternalServerError(
+                        "An unexpected error occured. Please contact API team.",
+                        HttpContext.TraceIdentifier,
+                        new List<string> { e.Message }));
+            }
         }
 
         [HttpPost("create")]
@@ -65,20 +87,31 @@ namespace ZipPayUserService.ApiControllers
                 return BadRequest();
             }
 
-            var validation = await _userService.ValidateCreationInputsAsync(createUserRequest.EmailAddress);
-
-            if (!validation.IsValid)
+            try
             {
-                return BadRequest(
-                    ApiErrorResponse.GetCustomBadRequest(
-                        "One or more business rules were not respected.",
-                        HttpContext.TraceIdentifier, 
-                        new List<string> { validation.Error }));
+                var validation = await _userService.ValidateCreationInputsAsync(createUserRequest.EmailAddress);
+
+                if (!validation.IsValid)
+                {
+                    return BadRequest(
+                        ApiErrorResponse.GetCustomBadRequest(
+                            "One or more business rules were not respected.",
+                            HttpContext.TraceIdentifier,
+                            new List<string> { validation.Error }));
+                }
+
+                var createdUser = await _userService.CreateNewUserAsync(createUserRequest.EmailAddress, createUserRequest.MonthlySalary, createUserRequest.MonthlyExpenses);
+
+                return StatusCode(201, createdUser.ToApiModel());
             }
-
-            var createdUser = await _userService.CreateNewUserAsync(createUserRequest.EmailAddress, createUserRequest.MonthlySalary, createUserRequest.MonthlyExpenses);
-
-            return StatusCode(201, createdUser.ToApiModel());
+            catch (Exception e)
+            {
+                return StatusCode(500,
+                    ApiErrorResponse.GetCustomInternalServerError(
+                        "An unexpected error occured. Please contact API team.",
+                        HttpContext.TraceIdentifier,
+                        new List<string> { e.Message }));
+            }
         }
     }
 }

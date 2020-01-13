@@ -8,6 +8,8 @@ namespace ZipPayUserService.ApiModels
 
         public const string NotFoundType = "https://tools.ietf.org/html/rfc7231#section-6.5.4";
 
+        public const string InternalServerErrorType = "https://tools.ietf.org/html/rfc7231#section-6.6.1";
+
         public string Type { get; set; }
 
         public string Title { get; set; }
@@ -36,6 +38,18 @@ namespace ZipPayUserService.ApiModels
             {
                 Status = Microsoft.AspNetCore.Http.StatusCodes.Status404NotFound.ToString(),
                 Type = NotFoundType,
+                Title = title,
+                TraceId = traceId,
+                Errors = errors
+            };
+        }
+
+        public static ApiErrorResponse GetCustomInternalServerError(string title, string traceId, List<string> errors)
+        {
+            return new ApiErrorResponse
+            {
+                Status = Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError.ToString(),
+                Type = InternalServerErrorType,
                 Title = title,
                 TraceId = traceId,
                 Errors = errors
