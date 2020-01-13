@@ -22,12 +22,8 @@ namespace ZipPayUserService
             services.AddControllers();
 
             var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
-            services.AddTransient<IConnectionFactory>(s => new ConnectionFactory(connectionString));
-
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IAccountService, AccountService>();
-            services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddDataAccessLayer(connectionString);
+            services.AddDomain();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
